@@ -63,7 +63,7 @@ END
 // remains consistent on all systems.
 IDI_M30ICON                     ICON      "icons/npp.ico"
 IDI_CHAMELEON                   ICON      "icons/chameleon.ico"
-//IDI_JESUISCHARLIE               ICON      "icons/Je_suis_Charlie.ico"
+//IDI_JESUISCHARLIE             ICON      "icons/Je_suis_Charlie.ico"
 IDI_NEW_OFF_ICON                ICON      "icons/new_off.ico"
 IDI_OPEN_OFF_ICON               ICON      "icons/open_off.ico"
 IDI_SAVE_OFF_ICON               ICON      "icons/save_off.ico"
@@ -125,14 +125,15 @@ IDC_DRAG_INTERDIT_TAB           CURSOR    "cursors/drag_interdit.cur"
 IDC_DRAG_PLUS_TAB               CURSOR    "cursors/drag_plus.cur"
 IDC_DRAG_OUT_TAB                CURSOR    "cursors/drag_out.cur"
 
-IDR_FILENEW                     BITMAP    "icons/newFile.bmp"
-IDR_FILEOPEN                    BITMAP    "icons/openFile.bmp"
-IDR_FILESAVE                    BITMAP    "icons/saveFile.bmp"
-IDR_SAVEALL                     BITMAP    "icons/saveAll.bmp"
+IDR_FILENEW                     BITMAP    "icons/document-new.bmp"
+IDR_FILEOPEN                    BITMAP    "icons/document-open.bmp"
+//IDR_FILESAVE                    BITMAP    "icons/saveFile.bmp"
+IDR_FILESAVE                    BITMAP    "icons/document-save.bmp"
+IDR_SAVEALL                     BITMAP    "icons/document-save-all.bmp"
 IDR_CLOSEFILE                   BITMAP    "icons/closeFile.bmp"
 IDR_CLOSEALL                    BITMAP    "icons/closeAll.bmp"
-IDR_FIND                        BITMAP    "icons/find.bmp"
-IDR_REPLACE                     BITMAP    "icons/findReplace.bmp"
+IDR_FIND                        BITMAP    "icons/edit-find.bmp"
+IDR_REPLACE                     BITMAP    "icons/edit-find-replace.bmp"
 IDR_ZOOMIN                      BITMAP    "icons/zoomIn.bmp"
 IDR_ZOOMOUT                     BITMAP    "icons/zoomOut.bmp"
 IDR_WRAP                        BITMAP    "icons/wrap.bmp"
@@ -147,11 +148,12 @@ IDR_SAVERECORD                  BITMAP    "icons/saveRecord.bmp"
 IDR_CUT                         BITMAP    "icons/cut.bmp"
 IDR_COPY                        BITMAP    "icons/copy.bmp"
 IDR_PASTE                       BITMAP    "icons/paste.bmp"
-IDR_UNDO                        BITMAP    "icons/undo.bmp"
+//IDR_UNDO                        BITMAP    "icons/undo.bmp"
+IDR_UNDO                        BITMAP    "icons/edit-undo.bmp"
 IDR_REDO                        BITMAP    "icons/redo.bmp"
 IDR_SYNCV                       BITMAP    "icons/syncV.bmp"
 IDR_SYNCH                       BITMAP    "icons/syncH.bmp"
-IDR_PRINT                       BITMAP    "icons/print.bmp"
+IDR_PRINT                       BITMAP    "icons/document-print.bmp"
 IDR_CLOSETAB                    BITMAP    "icons/closeTabButton.bmp"
 IDR_CLOSETAB_INACT              BITMAP    "icons/closeTabButton_inact.bmp"
 IDR_CLOSETAB_HOVER              BITMAP    "icons/closeTabButton_hover.bmp"
@@ -211,19 +213,120 @@ IDI_FUNCLIST_LEAF               BITMAP      "icons/funcList_leaf.bmp"
 IDI_FUNCLIST_SORTBUTTON         BITMAP      "icons/funclstSort.bmp"
 IDI_FUNCLIST_RELOADBUTTON       BITMAP      "icons/funclstReload.bmp"
 
+
+IDR_M40_MENU MENU
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New",                             IDM_FILE_NEW
+        MENUITEM "&Open...",                         IDM_FILE_OPEN
+        MENUITEM "&Save",                            IDM_FILE_SAVE,INACTIVE
+        MENUITEM "Save &As...",                      IDM_FILE_SAVEAS,INACTIVE
+        MENUITEM "Sav&e All",                        IDM_FILE_SAVEALL
+        MENUITEM "&Close",                           IDM_FILE_CLOSE,INACTIVE
+        MENUITEM "Clos&e All",                       IDM_FILE_CLOSEALL,INACTIVE
+        MENUITEM "Print...",                         IDM_FILE_PRINT,INACTIVE
+        MENUITEM "E&xit",                            IDM_FILE_EXIT,INACTIVE
+    END
+
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Undo",                            IDM_EDIT_UNDO
+        MENUITEM "&Redo",                            IDM_EDIT_REDO
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t",                             IDM_EDIT_CUT
+        MENUITEM "&Copy",                            IDM_EDIT_COPY
+        MENUITEM "&Paste",                           IDM_EDIT_PASTE
+        MENUITEM "&Delete",                          IDM_EDIT_DELETE
+        MENUITEM SEPARATOR
+        MENUITEM "&Find...",                         IDM_SEARCH_FIND,INACTIVE
+        MENUITEM "&Replace...",                      IDM_SEARCH_REPLACE,INACTIVE
+    END
+    POPUP "Other" ,                                                                     
+    BEGIN
+        POPUP "&Zoom"                                                            
+        BEGIN
+        MENUITEM "Zoom &In",                             IDM_VIEW_ZOOMIN,INACTIVE
+        MENUITEM "Zoom &Out",                            IDM_VIEW_ZOOMOUT,INACTIVE
+        MENUITEM "Restore Default Zoom",                 IDM_VIEW_ZOOMRESTORE,INACTIVE
+        END
+        POPUP "E&ncoding"
+        BEGIN
+        MENUITEM "Encode in ANSI",                    IDM_FORMAT_ANSI,INACTIVE
+        MENUITEM "Encode in UTF-8",                   IDM_FORMAT_AS_UTF_8
+        MENUITEM SEPARATOR
+        MENUITEM "Convert to ANSI",            IDM_FORMAT_CONV2_ANSI
+        MENUITEM "Convert to UTF-8",           IDM_FORMAT_CONV2_AS_UTF_8
+        END
+        POPUP "&Language",                  INACTIVE         
+        BEGIN
+        MENUITEM "C",                       IDM_LANG_C
+        MENUITEM "C#",                      IDM_LANG_CS
+        MENUITEM "C++",                     IDM_LANG_CPP
+        MENUITEM "CSS",                     IDM_LANG_CSS,INACTIVE
+        MENUITEM "HTML",                    IDM_LANG_HTML
+        MENUITEM "Java",                    IDM_LANG_JAVA
+        MENUITEM "JavaScript",              IDM_LANG_JS
+        MENUITEM "LISP",                    IDM_LANG_LISP
+        MENUITEM "Matlab",                  IDM_LANG_MATLAB
+        MENUITEM "Objective-C",             IDM_LANG_OBJC
+        MENUITEM "Perl",                    IDM_LANG_PERL
+        MENUITEM "PHP",                     IDM_LANG_PHP
+        MENUITEM "Python",                  IDM_LANG_PYTHON
+        MENUITEM "R",                       IDM_LANG_R
+        MENUITEM "Ruby",                    IDM_LANG_RUBY
+        END
+        POPUP "Se&ttings"
+        BEGIN
+        MENUITEM "Preferences...",          IDM_SETTING_PREFERECE
+        MENUITEM "Style Configurator...",   IDM_LANGSTYLE_CONFIG_DLG
+        MENUITEM SEPARATOR
+        POPUP "Import"
+        BEGIN
+            MENUITEM "Import plugin(s)...",         IDM_SETTING_IMPORTPLUGIN,INACTIVE
+            MENUITEM "Import style theme(s)...",    IDM_SETTING_IMPORTSTYLETHEMS
+        END
+        END
+        POPUP "Run"
+        BEGIN
+        MENUITEM "&Run...",    IDM_EXECUTE
+        END
+
+    END
+
+    POPUP "All Command"
+    BEGIN
+    POPUP "File"                                    
+    BEGIN
+        MENUITEM "Close",                           IDM_ALL_CLOSE
+        MENUITEM "CloseAll",                        IDM_ALL_CLOSEALL
+        MENUITEM SEPARATOR
+        MENUITEM "Print",                           IDM_ALL_PRINT
+        MENUITEM "Find",                            IDM_ALL_FIND
+        MENUITEM "Replace",                         IDM_ALL_REPLACE
+        MENUITEM SEPARATOR
+        MENUITEM "Zoom &In",                        IDM_ALL_ZOOMIN
+        MENUITEM "Zoom &Out",                       IDM_ALL_ZOOMOUT
+        MENUITEM "CSS",                             IDM_ALL_CSS
+
+    END
+    END
+END
+
+
 IDR_M30_MENU MENU
 BEGIN
     POPUP "&File"
     BEGIN
         MENUITEM "&New",                             IDM_FILE_NEW
         MENUITEM "&Open...",                         IDM_FILE_OPEN
-		POPUP "Open Containing Folder"
-		BEGIN
+        POPUP "Open Containing Folder"
+        BEGIN
             MENUITEM "Explorer",       IDM_FILE_OPEN_FOLDER
             MENUITEM "cmd",            IDM_FILE_OPEN_CMD
-		END
+        END
         MENUITEM "Open in Default Viewer"          IDM_FILE_OPEN_DEFAULT_VIEWER
-		MENUITEM "Open Folder as Workspace...",      IDM_FILE_OPENFOLDERASWORSPACE
+        MENUITEM "Open Folder as Workspace...",      IDM_FILE_OPENFOLDERASWORSPACE
         MENUITEM "Re&load from Disk",                IDM_FILE_RELOAD
         MENUITEM "&Save",                            IDM_FILE_SAVE
         MENUITEM "Save &As...",                      IDM_FILE_SAVEAS
@@ -232,12 +335,12 @@ BEGIN
         MENUITEM "Rename...",                        IDM_FILE_RENAME
         MENUITEM "&Close",                           IDM_FILE_CLOSE
         MENUITEM "Clos&e All",                       IDM_FILE_CLOSEALL
-		POPUP "Close More"
-		BEGIN
-			MENUITEM "Close All but Active Document",    IDM_FILE_CLOSEALL_BUT_CURRENT
-			MENUITEM "Close All to the Left",			 IDM_FILE_CLOSEALL_TOLEFT
-			MENUITEM "Close All to the Right",			 IDM_FILE_CLOSEALL_TORIGHT
-		END
+        POPUP "Close More"
+        BEGIN
+            MENUITEM "Close All but Active Document",    IDM_FILE_CLOSEALL_BUT_CURRENT
+            MENUITEM "Close All to the Left",            IDM_FILE_CLOSEALL_TOLEFT
+            MENUITEM "Close All to the Right",           IDM_FILE_CLOSEALL_TORIGHT
+        END
         MENUITEM "Move to Recycle Bin",              IDM_FILE_DELETE
         MENUITEM SEPARATOR
         MENUITEM "Load Session...",                  IDM_FILE_LOADSESSION
@@ -259,7 +362,7 @@ BEGIN
         MENUITEM "&Paste",                           IDM_EDIT_PASTE
         MENUITEM "&Delete",                          IDM_EDIT_DELETE
         MENUITEM "Select A&ll",                      IDM_EDIT_SELECTALL
-		MENUITEM "Begin/End Select",                 IDM_EDIT_BEGINENDSELECT
+        MENUITEM "Begin/End Select",                 IDM_EDIT_BEGINENDSELECT
         MENUITEM SEPARATOR
         POPUP "Copy to Clipboard"
         BEGIN
@@ -276,7 +379,7 @@ BEGIN
         BEGIN
             MENUITEM "&UPPERCASE",              IDM_EDIT_UPPERCASE
             MENUITEM "&lowercase",              IDM_EDIT_LOWERCASE
-			MENUITEM "&Proper Case",            IDM_EDIT_PROPERCASE_FORCE
+            MENUITEM "&Proper Case",            IDM_EDIT_PROPERCASE_FORCE
             MENUITEM "Proper Case (blend)",      IDM_EDIT_PROPERCASE_BLEND
             MENUITEM "&Sentence case",          IDM_EDIT_SENTENCECASE_FORCE
             MENUITEM "Sentence case (blend)",   IDM_EDIT_SENTENCECASE_BLEND
@@ -290,21 +393,21 @@ BEGIN
             MENUITEM "Join Lines",                IDM_EDIT_JOIN_LINES
             MENUITEM "Move Up Current Line",      IDM_EDIT_LINE_UP
             MENUITEM "Move Down Current Line",    IDM_EDIT_LINE_DOWN
-			MENUITEM "Remove Empty Lines",        IDM_EDIT_REMOVEEMPTYLINES
-			MENUITEM "Remove Empty Lines (Containing Blank characters)",    IDM_EDIT_REMOVEEMPTYLINESWITHBLANK
-			MENUITEM "Insert Blank Line Above Current",    IDM_EDIT_BLANKLINEABOVECURRENT
-			MENUITEM "Insert Blank Line Below Current",    IDM_EDIT_BLANKLINEBELOWCURRENT
-			MENUITEM SEPARATOR
-			MENUITEM "Sort Lines Lexicographically Ascending",		IDM_EDIT_SORTLINES_LEXICOGRAPHIC_ASCENDING
-			MENUITEM "Sort Lines As Integers Ascending",			IDM_EDIT_SORTLINES_INTEGER_ASCENDING
-			MENUITEM "Sort Lines As Decimals (Comma) Ascending",	IDM_EDIT_SORTLINES_DECIMALCOMMA_ASCENDING
-			MENUITEM "Sort Lines As Decimals (Dot) Ascending",		IDM_EDIT_SORTLINES_DECIMALDOT_ASCENDING
-			MENUITEM SEPARATOR
-			MENUITEM "Sort Lines Lexicographically Descending",		IDM_EDIT_SORTLINES_LEXICOGRAPHIC_DESCENDING
-			MENUITEM "Sort Lines As Integers Descending",			IDM_EDIT_SORTLINES_INTEGER_DESCENDING
-			MENUITEM "Sort Lines As Decimals (Comma) Descending",	IDM_EDIT_SORTLINES_DECIMALCOMMA_DESCENDING
-			MENUITEM "Sort Lines As Decimals (Dot) Descending",		IDM_EDIT_SORTLINES_DECIMALDOT_DESCENDING
-		END
+            MENUITEM "Remove Empty Lines",        IDM_EDIT_REMOVEEMPTYLINES
+            MENUITEM "Remove Empty Lines (Containing Blank characters)",    IDM_EDIT_REMOVEEMPTYLINESWITHBLANK
+            MENUITEM "Insert Blank Line Above Current",    IDM_EDIT_BLANKLINEABOVECURRENT
+            MENUITEM "Insert Blank Line Below Current",    IDM_EDIT_BLANKLINEBELOWCURRENT
+            MENUITEM SEPARATOR
+            MENUITEM "Sort Lines Lexicographically Ascending",      IDM_EDIT_SORTLINES_LEXICOGRAPHIC_ASCENDING
+            MENUITEM "Sort Lines As Integers Ascending",            IDM_EDIT_SORTLINES_INTEGER_ASCENDING
+            MENUITEM "Sort Lines As Decimals (Comma) Ascending",    IDM_EDIT_SORTLINES_DECIMALCOMMA_ASCENDING
+            MENUITEM "Sort Lines As Decimals (Dot) Ascending",      IDM_EDIT_SORTLINES_DECIMALDOT_ASCENDING
+            MENUITEM SEPARATOR
+            MENUITEM "Sort Lines Lexicographically Descending",     IDM_EDIT_SORTLINES_LEXICOGRAPHIC_DESCENDING
+            MENUITEM "Sort Lines As Integers Descending",           IDM_EDIT_SORTLINES_INTEGER_DESCENDING
+            MENUITEM "Sort Lines As Decimals (Comma) Descending",   IDM_EDIT_SORTLINES_DECIMALCOMMA_DESCENDING
+            MENUITEM "Sort Lines As Decimals (Dot) Descending",     IDM_EDIT_SORTLINES_DECIMALDOT_DESCENDING
+        END
         POPUP "Comment/Uncomment"
         BEGIN
             MENUITEM "Toggle Single Line Comment",    IDM_EDIT_BLOCK_COMMENT
@@ -318,7 +421,7 @@ BEGIN
             MENUITEM "Function Completion",         IDM_EDIT_AUTOCOMPLETE
             MENUITEM "Word Completion",             IDM_EDIT_AUTOCOMPLETE_CURRENTFILE
             MENUITEM "Function Parameters Hint",    IDM_EDIT_FUNCCALLTIP
-			MENUITEM "Path Completion",				IDM_EDIT_AUTOCOMPLETE_PATH
+            MENUITEM "Path Completion",             IDM_EDIT_AUTOCOMPLETE_PATH
         END
         POPUP "EOL Conversion"
         BEGIN
@@ -347,14 +450,14 @@ BEGIN
             MENUITEM "Cut Binary Content",                 IDM_EDIT_CUT_BINARY
             MENUITEM "Paste Binary Content",               IDM_EDIT_PASTE_BINARY
         END
-		POPUP "On Selection"
-		BEGIN
-			MENUITEM "Open File",           IDM_EDIT_OPENASFILE
-			MENUITEM "Open Containing Folder in Explorer",         IDM_EDIT_OPENINFOLDER
-			MENUITEM SEPARATOR
-			MENUITEM "Search on Internet",     IDM_EDIT_SEARCHONINTERNET
-			MENUITEM "Change Search Engine...", IDM_EDIT_CHANGESEARCHENGINE
-		END
+        POPUP "On Selection"
+        BEGIN
+            MENUITEM "Open File",           IDM_EDIT_OPENASFILE
+            MENUITEM "Open Containing Folder in Explorer",         IDM_EDIT_OPENINFOLDER
+            MENUITEM SEPARATOR
+            MENUITEM "Search on Internet",     IDM_EDIT_SEARCHONINTERNET
+            MENUITEM "Change Search Engine...", IDM_EDIT_CHANGESEARCHENGINE
+        END
         MENUITEM SEPARATOR
         MENUITEM "Column Mode...",        IDM_EDIT_COLUMNMODETIP
         MENUITEM "Column Editor...",        IDM_EDIT_COLUMNMODE
@@ -468,25 +571,25 @@ BEGIN
             MENUITEM "Move to New Instance",    IDM_VIEW_GOTO_NEW_INSTANCE
             MENUITEM "Open in New Instance",    IDM_VIEW_LOAD_IN_NEW_INSTANCE
         END
-		
-		POPUP "Tab"
-		BEGIN
-			MENUITEM "1st Tab",					IDM_VIEW_TAB1
-			MENUITEM "2nd Tab",					IDM_VIEW_TAB2
-			MENUITEM "3rd Tab",					IDM_VIEW_TAB3
-			MENUITEM "4th Tab",					IDM_VIEW_TAB4
-			MENUITEM "5th Tab",					IDM_VIEW_TAB5
-			MENUITEM "6th Tab",					IDM_VIEW_TAB6
-			MENUITEM "7th Tab",					IDM_VIEW_TAB7
-			MENUITEM "8th Tab",					IDM_VIEW_TAB8
-			MENUITEM "9th Tab",					IDM_VIEW_TAB9
-			MENUITEM SEPARATOR
-			MENUITEM "Next Tab",				IDM_VIEW_TAB_NEXT
-			MENUITEM "Previous Tab",			IDM_VIEW_TAB_PREV
-			MENUITEM SEPARATOR
-			MENUITEM "Move Tab Forward",		IDM_VIEW_TAB_MOVEFORWARD
-			MENUITEM "Move Tab Backward",		IDM_VIEW_TAB_MOVEBACKWARD
-		END
+        
+        POPUP "Tab"
+        BEGIN
+            MENUITEM "1st Tab",                 IDM_VIEW_TAB1
+            MENUITEM "2nd Tab",                 IDM_VIEW_TAB2
+            MENUITEM "3rd Tab",                 IDM_VIEW_TAB3
+            MENUITEM "4th Tab",                 IDM_VIEW_TAB4
+            MENUITEM "5th Tab",                 IDM_VIEW_TAB5
+            MENUITEM "6th Tab",                 IDM_VIEW_TAB6
+            MENUITEM "7th Tab",                 IDM_VIEW_TAB7
+            MENUITEM "8th Tab",                 IDM_VIEW_TAB8
+            MENUITEM "9th Tab",                 IDM_VIEW_TAB9
+            MENUITEM SEPARATOR
+            MENUITEM "Next Tab",                IDM_VIEW_TAB_NEXT
+            MENUITEM "Previous Tab",            IDM_VIEW_TAB_PREV
+            MENUITEM SEPARATOR
+            MENUITEM "Move Tab Forward",        IDM_VIEW_TAB_MOVEFORWARD
+            MENUITEM "Move Tab Backward",       IDM_VIEW_TAB_MOVEBACKWARD
+        END
         MENUITEM "Word wrap",                   IDM_VIEW_WRAP
         MENUITEM "Focus on Another View",         IDM_VIEW_SWITCHTO_OTHER_VIEW
         MENUITEM "Hide Lines",                  IDM_VIEW_HIDELINES
@@ -528,7 +631,7 @@ BEGIN
                 MENUITEM "Project Panel 2",          IDM_VIEW_PROJECT_PANEL_2
                 MENUITEM "Project Panel 3",          IDM_VIEW_PROJECT_PANEL_3
             END
-		MENUITEM "Folder as Workspace",   IDM_VIEW_FILEBROWSER
+        MENUITEM "Folder as Workspace",   IDM_VIEW_FILEBROWSER
         MENUITEM "Document Map",          IDM_VIEW_DOC_MAP
         MENUITEM "Function List",         IDM_VIEW_FUNC_LIST
         MENUITEM SEPARATOR
@@ -537,8 +640,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Text Direction RTL",                  IDM_EDIT_RTL
         MENUITEM "Text Direction LTR",                  IDM_EDIT_LTR
-		MENUITEM SEPARATOR
-		MENUITEM "Monitoring (tail -f)",    IDM_VIEW_MONITORING
+        MENUITEM SEPARATOR
+        MENUITEM "Monitoring (tail -f)",    IDM_VIEW_MONITORING
     END
 
     POPUP "E&ncoding"
@@ -701,12 +804,12 @@ BEGIN
         MENUITEM "Gui4Cli",                 IDM_LANG_GUI4CLI
         MENUITEM "Haskell",                 IDM_LANG_HASKELL
         MENUITEM "HTML",                    IDM_LANG_HTML
-		MENUITEM "INI file",                IDM_LANG_INI
+        MENUITEM "INI file",                IDM_LANG_INI
         MENUITEM "Inno Setup",              IDM_LANG_INNO
         MENUITEM "Intel HEX",               IDM_LANG_IHEX
         MENUITEM "Java",                    IDM_LANG_JAVA
         MENUITEM "JavaScript",              IDM_LANG_JS
-		MENUITEM "JSON",                    IDM_LANG_JSON
+        MENUITEM "JSON",                    IDM_LANG_JSON
         MENUITEM "JSP",                     IDM_LANG_JSP
         MENUITEM "KIXtart",                 IDM_LANG_KIX
         MENUITEM "LISP",                    IDM_LANG_LISP
@@ -741,7 +844,7 @@ BEGIN
         MENUITEM "Smalltalk",               IDM_LANG_SMALLTALK
         MENUITEM "Spice",                   IDM_LANG_SPICE
         MENUITEM "SQL",                     IDM_LANG_SQL
-		MENUITEM "Swift",                  IDM_LANG_SWIFT
+        MENUITEM "Swift",                  IDM_LANG_SWIFT
         MENUITEM "S-Record",                IDM_LANG_SREC
         MENUITEM "TCL",                     IDM_LANG_TCL
         MENUITEM "Tektronix extended HEX",  IDM_LANG_TEHEX
@@ -785,7 +888,7 @@ BEGIN
         MENUITEM "CMake",                 IDM_LANG_CMAKE
         MENUITEM "COBOL",                 IDM_LANG_COBOL
         MENUITEM "CSound",                IDM_LANG_CSOUND
-		MENUITEM "CoffeeScript",          IDM_LANG_COFFEESCRIPT
+        MENUITEM "CoffeeScript",          IDM_LANG_COFFEESCRIPT
         MENUITEM "CSS",                   IDM_LANG_CSS
     END
     POPUP "D"
@@ -811,12 +914,12 @@ BEGIN
         MENUITEM "Haskell",               IDM_LANG_HASKELL
         MENUITEM "HTML",                  IDM_LANG_HTML
     END
-	POPUP "I"
-	BEGIN
-		MENUITEM "INI file",              IDM_LANG_INI
-		MENUITEM "Inno Setup",            IDM_LANG_INNO
-		MENUITEM "Intel HEX",             IDM_LANG_IHEX
-	END
+    POPUP "I"
+    BEGIN
+        MENUITEM "INI file",              IDM_LANG_INI
+        MENUITEM "Inno Setup",            IDM_LANG_INNO
+        MENUITEM "Intel HEX",             IDM_LANG_IHEX
+    END
     POPUP "J"
     BEGIN
         MENUITEM "Java",                  IDM_LANG_JAVA
@@ -850,7 +953,7 @@ BEGIN
         MENUITEM "Objective-C",           IDM_LANG_OBJC
         MENUITEM "OScript",               IDM_LANG_OSCRIPT
     END
-	POPUP "P"
+    POPUP "P"
     BEGIN
         MENUITEM "Pascal",                IDM_LANG_PASCAL
         MENUITEM "Perl",                  IDM_LANG_PERL
@@ -877,7 +980,7 @@ BEGIN
         MENUITEM "Smalltalk",             IDM_LANG_SMALLTALK
         MENUITEM "Spice",                 IDM_LANG_SPICE
         MENUITEM "SQL",                   IDM_LANG_SQL
-		MENUITEM "Swift",                IDM_LANG_SWIFT
+        MENUITEM "Swift",                IDM_LANG_SWIFT
         MENUITEM "S-Record",              IDM_LANG_SREC
     END
     POPUP "T"
@@ -916,17 +1019,17 @@ BEGIN
         MENUITEM "Edit Popup ContextMenu",      IDM_SETTING_EDITCONTEXTMENU
     END
 
-	POPUP "T&ools"
+    POPUP "T&ools"
     BEGIN
         POPUP "MD5"
-		BEGIN
-			MENUITEM "Generate...",                         IDM_TOOL_MD5_GENERATE
-			MENUITEM "Generate from files...",              IDM_TOOL_MD5_GENERATEFROMFILE
-			MENUITEM "Generate into clipboard",             IDM_TOOL_MD5_GENERATEINTOCLIPBOARD
+        BEGIN
+            MENUITEM "Generate...",                         IDM_TOOL_MD5_GENERATE
+            MENUITEM "Generate from files...",              IDM_TOOL_MD5_GENERATEFROMFILE
+            MENUITEM "Generate into clipboard",             IDM_TOOL_MD5_GENERATEINTOCLIPBOARD
         END
     END
-	
-	POPUP "&Macro"
+    
+    POPUP "&Macro"
     BEGIN
         MENUITEM "Start Re&cording",                   IDM_MACRO_STARTRECORDINGMACRO
         MENUITEM "S&top Recording",                    IDM_MACRO_STOPRECORDINGMACRO
@@ -949,18 +1052,23 @@ BEGIN
         MENUITEM "Notepad++ Project Page",    IDM_PROJECTPAGE
         //MENUITEM "Online Documentation",      IDM_ONLINEHELP
         MENUITEM "Notepad++ Community (Forum)",                     IDM_FORUM
-		MENUITEM "Live Support",				IDM_ONLINESUPPORT
+        MENUITEM "Live Support",                IDM_ONLINESUPPORT
         MENUITEM "Get More Plugins",          IDM_PLUGINSHOME
         MENUITEM SEPARATOR
         MENUITEM "Update Notepad++",          IDM_UPDATE_NPP
-		MENUITEM "Set Updater Proxy...",         IDM_CONFUPDATERPROXY
-		MENUITEM SEPARATOR
+        MENUITEM "Set Updater Proxy...",         IDM_CONFUPDATERPROXY
+        MENUITEM SEPARATOR
         MENUITEM "Debug Info...",           IDM_DEBUGINFO
         MENUITEM "About Notepad++",           IDM_ABOUT
     END
 
     MENUITEM "X",    IDM_FILE_CLOSE, HELP
 END
+
+
+
+
+
 
 IDR_SYSTRAYPOPUP_MENU MENU
 BEGIN
